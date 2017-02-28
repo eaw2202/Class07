@@ -3,24 +3,22 @@ package com.elysewarren.class07;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     private TextView displayText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_second);
         displayText = (TextView) findViewById(R.id.display_text);
-    }
 
-    public void launchActivity(View view) {
-        Intent intent = new Intent(this, SecondActivity.class);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(Keys.STRING);
+        int num = intent.getIntExtra(Keys.NUM, 0);
 
-        intent.putExtra(Keys.String, "Hello....");
-        intent.putExtra(Keys.NUM, 100);
-        startActivity(intent);
+        displayText.setText(message + "" + num);
     }
 }
